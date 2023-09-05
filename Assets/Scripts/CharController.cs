@@ -11,6 +11,7 @@ public class CharController : MonoBehaviour
     private bool groundedPlayer; //retorna se o jogador está no chão
     private Transform cameraTransform;
 
+
     [SerializeField]
     private float playerSpeed = 2.0f; // velocidade em si
      [SerializeField]
@@ -26,6 +27,7 @@ public class CharController : MonoBehaviour
     public GameObject CameraZoom;
 
     private InputManager inputManager;
+    public int ray_distance;
 
     private void Start()
     {
@@ -41,6 +43,21 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray,out hit, ray_distance))
+            {
+                Debug.Log(hit.transform.name);
+                if(inputManager.PlayerShoot())
+                {
+                    if(hit.transform.gameObject.tag == "Enemy")
+                    {
+                        Debug.Log("Atirou");
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
+            }
+
         groundedPlayer = controller.isGrounded;           //verificando se está no chão
         if (groundedPlayer && playerVelocity.y < 0)
         {
