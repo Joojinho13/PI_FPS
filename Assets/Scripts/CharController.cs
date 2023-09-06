@@ -27,7 +27,7 @@ public class CharController : MonoBehaviour
     public GameObject CameraZoom;
 
     private InputManager inputManager;
-    public int ray_distance;
+    public Camera cam;
 
     private void Start()
     {
@@ -43,21 +43,6 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray,out hit, ray_distance))
-            {
-                Debug.Log(hit.transform.name);
-                if(inputManager.PlayerShoot())
-                {
-                    if(hit.transform.gameObject.tag == "Enemy")
-                    {
-                        Debug.Log("Atirou");
-                        Destroy(hit.transform.gameObject);
-                    }
-                }
-            }
-
         groundedPlayer = controller.isGrounded;           //verificando se está no chão
         if (groundedPlayer && playerVelocity.y < 0)
         {
