@@ -14,7 +14,8 @@ public class InputManager : MonoBehaviour
 
     public static InputManager Instance {
 
-        get {
+        get
+        {
             return _instance;
         }
     }

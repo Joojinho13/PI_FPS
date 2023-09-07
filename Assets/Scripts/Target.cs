@@ -15,6 +15,6 @@ public class Target : MonoBehaviour
 
     public void hit()
     {
-        transform.position = new Vector3(Random.Range(ValorMin_X, ValorMax_X), Random.Range(ValorMin_Y, ValorMax_Y), 16);
+        transform.position = new Vector3(Random.Range(ValorMin_X, ValorMax_X), Random.Range(ValorMin_Y, ValorMax_Y), Random.Range(ValorMin_Z, ValorMax_Z));
     }
 }
